@@ -1,0 +1,66 @@
+<div class="navbar">
+    <h2>
+        Transactions
+    </h2>
+</div>
+
+<div class="main-container">
+    <div class="container">
+        <h2>Todo Transactions</h2>
+        <form [formGroup]="todoForm" (ngSubmit)="onSubmitExpense()" class="input-form">
+            <div class="form-group">
+                <select formControlName="month" id="month" class="form-control" (change)="onChangeExpense($event)">
+                    <option value="" disabled>Select Month</option>
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                </select>
+            </div>
+            <div class="form-group">
+            </div>
+            <div class="total-todoTrans">
+                Total ToDo's for {{ selectedMonth }}: ${{ calculateTotalExpense(selectedMonth) }}
+            </div>
+            <div class="form-group">
+                <label for="expenseType">Transaction Type:</label>
+                <input type="text" formControlName="expenseType" id="expenseType" class="form-control"
+                    placeholder="Enter Transaction Type" [class.disabled-dropdown]="!monthSelected">
+            </div>
+
+            <div class="form-group">
+                <label for="expenseAmount">Amount:</label>
+                <input type="number" formControlName="expenseAmount" id="expenseAmount" class="form-control"
+                    placeholder="Enter amount" [class.disabled-dropdown]="!monthSelected">
+            </div>
+            <button type="submit" class="btn btn-primary" (click)="onSubmitExpense()"
+                [class.disabled-dropdown]="!monthSelected">Add Transaction</button>
+        </form>
+        <hr>
+        <h3>Transaction List - {{ selectedMonth }}</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Transaction Type</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let todoTrans of getFilteredExpenses()">
+                    <td [ngClass]="{'strikeout': todoTrans.selected}" (click)="toggleSelection(todoTrans)">
+                        {{ todoTrans.expenseType }}
+                    </td>
+                    <td>{{ todoTrans.expenseAmount }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="input-form">
+            <button class="btn btn-primary" (click)="onBack()">Back</button>
+            <div class="form-group">
+            </div>
+            <button class="btn btn-primary" (click)="saveForm()">Save</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,92 @@
+<app-side-nav></app-side-nav>
+<div class="container">
+    <div class="card-container">
+        <!-- Income Card -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon income-icon"><mat-icon>attach-money</mat-icon></span>
+                <h2>Income</h2>
+            </div>
+            <hr>
+            <div class="income-details">
+                <div class="month">
+                    <h3>Last Few Month</h3>
+                    <ul>
+                        <li *ngFor="let monthIncome of lastMonthIncome">{{ monthIncome }}</li>
+                    </ul>
+                </div>
+                <div class="month">
+                    <h3>Current Month</h3>
+                    <p>{{ currentMonthIncome }}</p>
+                </div>
+                <button class="button" (click)="onIncome()">View</button>
+            </div>
+        </div>
+
+        <!-- Expense Card -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon expense-icon"><mat-icon>money-off</mat-icon></span>
+                <h2>Expense</h2>
+            </div>
+            <hr>
+            <div class="income-details">
+                <div class="month">
+                    <h3>Last Few Month</h3>
+                    <ul>
+                        <li *ngFor="let monthExpense of lastMonthExpense">{{ monthExpense }}</li>
+                    </ul>
+                </div>
+                <div class="month">
+                    <h3>Current Month</h3>
+                    <p>{{ currentMonthExpense }}</p>
+                </div>
+                <button class="button" (click)="onExpense()">View</button>
+            </div>
+        </div>
+
+        <!-- UpcomingExpense -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon upcoming-icon"><mat-icon>assignment</mat-icon></span>
+                <h2>Upcoming Expense </h2>
+            </div>
+            <hr>
+            <ul>
+                <li *ngFor="let item of upcomingTransactions">
+                    <span class="transaction-status">
+                        <mat-icon>hourglass-empty</mat-icon>
+                    </span>
+                    <span class="transaction-details">{{ item.description }}</span>
+                </li>
+            </ul>
+            <button class="button" (click)="onUpcoming()">View</button>
+        </div>
+
+        <!-- Total Transaction -->
+        <div class="card">
+            <div class="card-header">
+                <span class="icon total-icon"><mat-icon>timeline</mat-icon></span>
+                <h2>Total Income</h2>
+            </div>
+            <hr>
+            <div class="total-details">
+                <div class="total-item">
+                    <span class="icon income-icon"><mat-icon>attach-money</mat-icon></span>
+                    <h2>Current month Income</h2>
+                    <p>{{ totalCurrentMonthIncome }}</p>
+                </div>
+                <div class="total-item">
+                    <span class="icon expense-icon"><mat-icon>money-off</mat-icon></span>
+                    <h2>Current month Expense</h2>
+                    <p>{{ totalCurrentMonthExpense }}</p>
+                </div>
+                <hr class="total-line">
+                <div class="total-line">
+                    <span class="icon trans-icon"><mat-icon>account_balance_wallet</mat-icon></span>
+                    <h2>Current month savings</h2>
+                    <p>{{ currentMonthSavings }}</p>
+                </div>
+        </div>
+    </div>
+</div>
